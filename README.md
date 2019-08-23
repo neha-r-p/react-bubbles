@@ -38,7 +38,7 @@ Using protected/private routes, sending an authentication header with API calls,
 
 - [ ] Describe how web servers work.
 
-
+A web server is : a computer that stores the code for a website, and/or a software program that runs on said computer. Servers are on 24/7 so anyone can access them at any time. Servers are accessed on the internet with a specific url pointing to it.
 
 - [ ] Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
 
