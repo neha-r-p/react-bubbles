@@ -45,9 +45,10 @@ const ColorList = ({ colors, updateColors }) => {
       .delete(`http://localhost:5000/api/colors/${color.id}`)
       .then(res => {
         console.log("delete", res.data);
-        updateColors(res.data);
+        let newColorArray = colors.filter(col => col.id !== res.data)
+        updateColors(newColorArray);
       })
-      .get(err => console.log(err));
+      .catch(err => console.log(err));
   };
 
   return (
