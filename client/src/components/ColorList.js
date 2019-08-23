@@ -20,28 +20,34 @@ const ColorList = ({ colors, updateColors }) => {
   const saveEdit = e => {
     e.preventDefault();
     axiosWithAuth()
-    .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
-    .then(res => {
-      console.log("putty", res);
-      setColorToEdit(initialColor);
-      let colorArr = colors.map(color => {
-        if (colorToEdit.id === color.id){
-          console.log('put')
-          return res.data
-        } else {
-          return color;
-        }
+      .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
+      .then(res => {
+        console.log("putty", res);
+        setColorToEdit(initialColor);
+        let colorArr = colors.map(color => {
+          if (colorToEdit.id === color.id) {
+            console.log("put");
+            return res.data;
+          } else {
+            return color;
+          }
+        });
+        updateColors(colorArr);
+      })
+      .catch(err => {
+        console.log(err);
       });
-      updateColors(colorArr)
-
-    })
-    .catch(err => {
-      console.log(err)
-    })
   };
 
   const deleteColor = color => {
     // make a delete request to delete this color
+    axiosWithAuth()
+      .delete(`http://localhost:5000/api/colors/${color.id}`)
+      .then(res => {
+        console.log("delete", res.data);
+        updateColors(res.data);
+      })
+      .get(err => console.log(err));
   };
 
   return (
